@@ -1,0 +1,172 @@
+{
+    "summary":{
+    "acm": {
+      "checked_items": 2,
+      "flagged_items": 0,
+      "max_level": "warning",
+      "resources_count": 1,
+      "rules_count": 2
+    },
+    "awslambda": {
+      "checked_items": 0,
+      "flagged_items": 0,
+      "max_level": "warning",
+      "resources_count": 33,
+      "rules_count": 0
+    },
+    "cloudformation": {
+      "checked_items": 5,
+      "flagged_items": 1,
+      "max_level": "danger",
+      "resources_count": 5,
+      "rules_count": 1
+    },
+    "cloudtrail": {
+      "checked_items": 258,
+      "flagged_items": 9,
+      "max_level": "danger",
+      "resources_count": 80,
+      "rules_count": 6
+    },
+    "cloudwatch": {
+      "checked_items": 8,
+      "flagged_items": 0,
+      "max_level": "warning",
+      "resources_count": 8,
+      "rules_count": 1
+    },
+    "config": {
+      "checked_items": 16,
+      "flagged_items": 14,
+      "max_level": "warning",
+      "resources_count": 34,
+      "rules_count": 1
+    },
+    "directconnect": {
+      "checked_items": 0,
+      "flagged_items": 0,
+      "max_level": "warning",
+      "resources_count": 0,
+      "rules_count": 0
+    },
+    "ec2": {
+      "checked_items": 6615,
+      "flagged_items": 513,
+      "max_level": "danger",
+      "resources_count": 223,
+      "rules_count": 27
+    },
+    "efs": {
+      "checked_items": 0,
+      "flagged_items": 0,
+      "max_level": "warning",
+      "resources_count": 0,
+      "rules_count": 0
+    },
+    "elasticache": {
+      "checked_items": 0,
+      "flagged_items": 0,
+      "max_level": "warning",
+      "resources_count": 0,
+      "rules_count": 0
+    },
+    "elb": {
+      "checked_items": 0,
+      "flagged_items": 0,
+      "max_level": "warning",
+      "resources_count": 0,
+      "rules_count": 1
+    },
+    "elbv2": {
+      "checked_items": 0,
+      "flagged_items": 0,
+      "max_level": "warning",
+      "resources_count": 0,
+      "rules_count": 3
+    },
+    "emr": {
+      "checked_items": 0,
+      "flagged_items": 0,
+      "max_level": "warning",
+      "resources_count": 0,
+      "rules_count": 0
+    },
+    "iam": {
+      "checked_items": 2661,
+      "flagged_items": 87,
+      "max_level": "danger",
+      "resources_count": 443,
+      "rules_count": 32
+    },
+    "kms": {
+      "checked_items": 0,
+      "flagged_items": 0,
+      "max_level": "warning",
+      "resources_count": 41,
+      "rules_count": 0
+    },
+    "rds": {
+      "checked_items": 6,
+      "flagged_items": 0,
+      "max_level": "warning",
+      "resources_count": 32,
+      "rules_count": 8
+    },
+    "redshift": {
+      "checked_items": 6,
+      "flagged_items": 6,
+      "max_level": "danger",
+      "resources_count": 3,
+      "rules_count": 6
+    },
+    "route53": {
+      "checked_items": 0,
+      "flagged_items": 0,
+      "max_level": "warning",
+      "resources_count": 4,
+      "rules_count": 3
+    },
+    "s3": {
+      "checked_items": 588,
+      "flagged_items": 152,
+      "max_level": "warning",
+      "resources_count": 32,
+      "rules_count": 19
+    },
+    "secretsmanager": {
+      "checked_items": 0,
+      "flagged_items": 0,
+      "max_level": "warning",
+      "resources_count": 0,
+      "rules_count": 0
+    },
+    "ses": {
+      "checked_items": 6,
+      "flagged_items": 2,
+      "max_level": "warning",
+      "resources_count": 2,
+      "rules_count": 4
+    },
+    "sns": {
+      "checked_items": 84,
+      "flagged_items": 0,
+      "max_level": "warning",
+      "resources_count": 9,
+      "rules_count": 7
+    },
+    "sqs": {
+      "checked_items": 84,
+      "flagged_items": 46,
+      "max_level": "danger",
+      "resources_count": 11,
+      "rules_count": 7
+    },
+    "vpc": {
+      "checked_items": 378,
+      "flagged_items": 262,
+      "max_level": "warning",
+      "resources_count": 4,
+      "rules_count": 8
+    }
+  }
+}
