@@ -9,6 +9,9 @@ import Login from './components/auth/Login'
 import ScrollTop from './components/Plugins/ScrollTop'
 import ComplianceDashboard from './components/pages/ComplianceDashboard';
 import CloudDashboard from './components/pages/CloudDashboard';
+import AWSServices from './components/pages/AWSServices';
+import AWSServiceDetails from './components/pages/AWSServiceDetails';
+import AWSServiceDetails2 from './components/pages/AWSServiceDetails2';
 import TabluePoc1 from './components/pages/TabluePoc1';
 import setupAxiosInterceptors from './components/SupportingJs/Interceptor';
 import CreateNewAcc from './components/pages/CreateNewAcc';
@@ -58,8 +61,12 @@ function App() {
           </Route>
           {/* <Route exact path="/" component={Dashboard} /> */}
           <Route path="/cloudDashboard" component={CloudDashboard} />
+          <Route path="/awsservices" component={AWSServices} />
+          <Route path="/aws-services-details/:id" component={AWSServiceDetails} />
+          <Route path="/aws-services-details-2" component={AWSServiceDetails2} />
           <Route path="/ds/:id" component={DashboardService} />
-          <Route path="/fs/:id" component={FindingDetails} />
+          {/* <Route path="/fs/:id" component={FindingDetails} /> */}
+          <Route path="/fs" component={FindingDetails} />
           <Route path="/complianceDashBoard/:id" component={ComplianceDashboard} />
           <Route path="/summaryDetailsOci/:id" component={OCISummaryDetails} />
           <Route path="/aws_accounts" component={TabluePoc1} />

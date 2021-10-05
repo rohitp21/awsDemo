@@ -94,7 +94,7 @@ export default class DashboardService extends Component {
                             }
                         </Nav>
                     </Col> */}
-                    <Col xs="12" sm="11" md="11">
+                    <Col xs="12" sm="12" md="12">
 
                         {/* <TabContent activeTab={this.state.activeTab}>
                             {

@@ -1135,7 +1135,6 @@ class CloudDashboard extends Component {
     //   accId: this.state.accId,
     //   activeComp: this.state.activeComp,
     // });
-    debugger
     //this.props.history.push(`/ds/${this.state.accId}`);
     this.props.history.push(`/ds/${this.state.accId}`, {
       accId: this.state.accId,
@@ -1258,6 +1257,14 @@ class CloudDashboard extends Component {
                                               item.name
                                               ]
                                               : item.name} */}
+                                              <img
+                                              className="img-fluid"
+                                              alt={item.name}
+                                              src={require("../assets/img/aws/" +
+                                                item.name +
+                                                ".svg")}
+                                            />
+                                            &nbsp;
                                           {item.name}
                                         </td>
                                       {/* ) : null} */}

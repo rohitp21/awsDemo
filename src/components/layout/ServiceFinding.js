@@ -97,10 +97,14 @@ class ServiceFinding extends Component {
     //   this.showToast(Constants.TOAST_SOMETHING_WENT_WRONG, "error");
     // }
 
-    await axios.get("http://34.122.239.255:32599/getresource/" + this.props.serviceName + "/" + this.props.accId).then(response => {
+    await axios.get(Constants.URLSERVER+"getresources/" + this.props.serviceName + "-" + this.props.accId).then(response => {
       console.log(response);
-      let respdata = response.data
+      
+      let respdata = response.data.data
+     
+      this.unBlockUi();
       if (respdata && respdata != "NE") {
+        debugger
         window.scrollTo(0, 0);
         for (var { } in respdata) {
           let findingsObj = respdata.findings;
@@ -121,6 +125,7 @@ class ServiceFinding extends Component {
       } else {
         this.showToast(Constants.TOAST_SOMETHING_WENT_WRONG, "error");
       }
+
     }).catch(error => {
       let respdata = "NE"
       console.log(error);
@@ -181,6 +186,9 @@ class ServiceFinding extends Component {
   };
   goToFindingDetails = (items, path, dbName, id_suffix) => {
     //disable click
+    if (this.state.serviceName === 's3') {
+return
+    }
 
     if (items.length === 0) {
       return;
@@ -189,13 +197,26 @@ class ServiceFinding extends Component {
     let tempPath = path.substring(0, path.length - 3); //common pattern in findings?? to remove .id?
 
     //this.props.history.push('/ds')
-    this.props.history.push(`/fs/:${this.props.accountId}`, {
-      labels: this.props.labels,
+    // this.props.history.push(`/fs/:${this.props.accountId}`, {
+    //   labels: this.props.labels,
+    //   accId: this.props.accountId,
+    //   whichDataToFetch: this.props.whichDataToFetch,
+    //   pathToFetchData: tempPath,
+    //   dbName: dbName,
+    //   activeTab: this.props.activeTab,
+    //   data: this.state.data,
+    //   items: items,
+    //   id_suffix: id_suffix,
+    // });
+    this.props.history.push('/fs', {
+      //labels: this.props.labels,
       accId: this.props.accountId,
-      whichDataToFetch: this.props.whichDataToFetch,
+      accId: this.props.accId,
+      whichDataToFetch: this.props.serviceName,
       pathToFetchData: tempPath,
+      serviceName: this.props.serviceName,
       dbName: dbName,
-      activeTab: this.props.activeTab,
+      //activeTab: this.props.activeTab,
       data: this.state.data,
       items: items,
       id_suffix: id_suffix,
@@ -287,18 +308,18 @@ class ServiceFinding extends Component {
                 >
                   Dashboard
                 </BreadcrumbItem>
-                {/* <BreadcrumbItem className="text-capitalize" tag="a">
-                  {this.props.whichDataToFetch} Dashboard
-                </BreadcrumbItem> */}
+                 <BreadcrumbItem className="text-capitalize link" tag="a" onClick={() => this.props.history.goBack()}>
+                  {this.state.serviceName} Dashboard
+                </BreadcrumbItem>
                 <BreadcrumbItem active tag="span">
-                  Account ID: {this.props.accountId}
+                  Account ID: {this.props.accId}
                 </BreadcrumbItem>
               </Breadcrumb>
             </div>
-            <div className="col-md-2">
+            <div className="col-md-4">
               <div className="d-inline-flex float-right selectLabelContainer">
                 {/* <Label className="" for="exampleSelect">Select View</Label> */}
-                {/* <List component="nav">
+                <List component="nav">
                   <ListItem
                     button
                     aria-haspopup="true"
@@ -315,8 +336,8 @@ class ServiceFinding extends Component {
                       <ExpandMore />
                     </ListItemIcon>
                   </ListItem>
-                </List> */}
-                {/* <Menu
+                </List>
+                <Menu
                   id="lock-menu2"
                   anchorEl={anchorEl}
                   open={Boolean(anchorEl)}
@@ -333,7 +354,7 @@ class ServiceFinding extends Component {
                       {option}
                     </MenuItem>
                   ))}
-                </Menu> */}
+                </Menu>
                 {/* <Input
                   type="select"
                   name="select"
@@ -346,7 +367,7 @@ class ServiceFinding extends Component {
                 </Input> */}
               </div>
             </div>
-            <div className="col-md-2">
+            <div className="col-md-0">
 
               {/* <DatePicker
                 placeholderText="Select Date"
@@ -358,7 +379,7 @@ class ServiceFinding extends Component {
           {/*  select view ends */}
           <Divider />
           <div className="col-12">
-            <div className="row">
+            <div className="row  mx-auto">
               {/* {this.props.whichDataToFetch === "blockstorage" &&
                         <div className="col-md-4 p-0">
                             <Card className="m-2">
@@ -417,7 +438,7 @@ class ServiceFinding extends Component {
                     <Card className="m-1 card-custom-font">
                       <div
                         onClick={() => this._dataContextUtil.showAlert("Ignore and Add Comment below?", " ", "saCommentPol", item)}
-                        className="posAbs saCommentBox">
+                        className="posAbs saCommentBox d-none">
 
                         {item.sa_comment != undefined ?
                           <>
@@ -484,6 +505,9 @@ class ServiceFinding extends Component {
                             item.level === "danger"
                             ? "findingDanger"
                             : null,
+                            this.state.serviceName === 's3'
+                            ? "disabledTextColor"
+                            : null
                         ]}
                         onClick={() =>
                           this.goToFindingDetails(

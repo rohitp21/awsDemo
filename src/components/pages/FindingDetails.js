@@ -48,6 +48,7 @@ export default class FindingDetails extends Component {
             activeTab: '',
             // lables: this.props.location.state.labels,
             accId: this.props.location.state.accId,
+            serviceName: this.props.location.state.serviceName,
             pathToFetchData: this.props.location.state.pathToFetchData,
         };
     }
@@ -88,7 +89,7 @@ export default class FindingDetails extends Component {
         let data = Object.entries(tempData2);
 
         if (items.length > 0) {
-            if (localStorage.getItem('cpro') === 'aws') {
+            if (true) {
                 if (this.state.pathToFetchData === "ec2.regions.id.vpcs.id.security_groups") {
                     for (let e = 0; e < items.length; e++) {
                         var str = items[e];
@@ -347,203 +348,203 @@ export default class FindingDetails extends Component {
 
 
             }
-            if (localStorage.getItem('cpro') === 'oci') {
-                if (this.state.pathToFetchData === "identity.policies") {
-                    this.setState({ policies: tempData.policies });
-                    for (let e = 0; e < items.length; e++) {
-                        var str = items[e];
-                        var res = str.split(".");
-                        for (var i = 0; i < res.length; i++) {
-                            if (res[i] === "policies")
-                                displayableData.push(res[i + 1]);
-                        }
-                    }
-                }
-                else if (this.state.pathToFetchData === "identity.users") {
-                    this.setState({ policies: tempData.policies });
-                    for (let e = 0; e < items.length; e++) {
-                        var str = items[e];
-                        var res = str.split(".");
-                        for (var i = 0; i < res.length; i++) {
-                            if (res[i] === "users")
-                                displayableData.push(res[i + 1]);
-                        }
-                    }
-                }
-                else if (this.state.pathToFetchData === "objectstorage.compartments.id.buckets") {
-                    if (id_suffix) {
-                        for (let e = 0; e < items.length; e++) {
-                            var test = items[e];
-                            var firstvariable = "buckets.";
-                            var secondvariable = '.' + id_suffix;
-                            var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
-                            displayableData.push(result[1]);
-                        }
-                    } else {
-                        for (let e = 0; e < items.length; e++) {
-                            var test = items[e];
-                            var firstvariable = "buckets.";
-                            var secondvariable = '';
-                            var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
-                            displayableData.push(result[1]);
-                        }
-                    }
-                }
-                else if (this.state.pathToFetchData === "blockstorage.compartments.id.blockvolumes") {
-                    if (id_suffix) {
-                        for (let e = 0; e < items.length; e++) {
-                            var test = items[e];
-                            var firstvariable = "blockvolumes.";
-                            var secondvariable = '.' + id_suffix;
-                            var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
-                            displayableData.push(result[1]);
-                        }
-                    } else {
-                        for (let e = 0; e < items.length; e++) {
-                            var test = items[e];
-                            var firstvariable = "blockvolumes.";
-                            var secondvariable = '';
-                            var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
-                            displayableData.push(result[1]);
-                        }
-                    }
-                }
-                else if (this.state.pathToFetchData === "database.compartments.id.db_system.id.databases") {
-                    if (id_suffix) {
-                        for (let e = 0; e < items.length; e++) {
-                            var test = items[e];
-                            var firstvariable = "db_system.";
-                            var secondvariable = '.databases';
-                            var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
-                            displayableData.push(result[1]);
-                        }
-                    } else {
-                        for (let e = 0; e < items.length; e++) {
-                            var test = items[e];
-                            var firstvariable = "databases.";
-                            var secondvariable = '';
-                            var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
-                            displayableData.push(result[1]);
-                        }
-                    }
-                }
-                else if (this.state.pathToFetchData === "database.compartments.id.db_system") {
-                    if (id_suffix) {
-                        for (let e = 0; e < items.length; e++) {
-                            var test = items[e];
-                            var firstvariable = "db_system.";
-                            var secondvariable = '.domain';
-                            var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
-                            displayableData.push(result[1]);
-                        }
-                    } else {
-                        for (let e = 0; e < items.length; e++) {
-                            var test = items[e];
-                            var firstvariable = "db_system.";
-                            var secondvariable = '';
-                            var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
-                            displayableData.push(result[1]);
-                        }
-                    }
-                }
-                else if (this.state.pathToFetchData === "compute.compartments.id.instances") {
-                    if (id_suffix) {
-                        for (let e = 0; e < items.length; e++) {
-                            var test = items[e];
-                            var firstvariable = "instances.";
-                            var secondvariable = '.' + id_suffix;
-                            var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
-                            displayableData.push(result[1]);
-                        }
-                    } else {
-                        for (let e = 0; e < items.length; e++) {
-                            var test = items[e];
-                            var firstvariable = "instances.";
-                            var secondvariable = '';
-                            var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
-                            displayableData.push(result[1]);
-                        }
-                    }
-                }
-                else if (this.state.pathToFetchData === "vcn.compartments.id.vcn.id.security_lists.id.ingress_security_rules") {
-                    if (id_suffix) {
-                        for (let e = 0; e < items.length; e++) {
-                            var test = items[e];
-                            var firstvariable = "security_lists.";
-                            var secondvariable = '.' + id_suffix;
-                            var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
-                            displayableData.push(result[1]);
-                        }
-                    } else {
-                        for (let e = 0; e < items.length; e++) {
-                            var test = items[e];
-                            var firstvariable = "security_lists.";
-                            var secondvariable = '.ingress_security_rules';
-                            var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
-                            displayableData.push(result[1]);
-                            var result2 = test.match(new RegExp(secondvariable + '.' + "(.*)" + ""));
-                            displayableData2.push(result2[1]);
-                            var result3 = test.match(new RegExp("compartments." + "(.*)" + ".vcn"));
-                            displayableData3.push(result3[1]);
-                        }
-                    }
-                }
-                else if (this.state.pathToFetchData === "vcn.compartments.id.vcn.id.nsg.id.ingress_rules") {
-                    if (id_suffix) {
-                        for (let e = 0; e < items.length; e++) {
-                            var test = items[e];
-                            var firstvariable = "security_lists.";
-                            var secondvariable = '.' + id_suffix;
-                            var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
-                            displayableData.push(result[1]);
-                        }
-                    } else {
-                        for (let e = 0; e < items.length; e++) {
-                            var test = items[e];
-                            var result = test.match(new RegExp(".vcn." + "(.*)" + ".nsg"));
-                            displayableData.push(result[1]);
-                            var result2 = test.match(new RegExp("nsg." + '.' + "(.*)" + ".ingress_rules"));
-                            displayableData2.push(result2[1]);
-                            var result3 = test.match(new RegExp("ingress_rules." + "(.*)" + ""));
-                            displayableData3.push(result3[1]);
-                        }
-                    }
-                }
-                else if (this.state.pathToFetchData === "loadbalancer.compartments.id.loadbalancer.id.listeners") {
-                    if (id_suffix) {
-                        for (let e = 0; e < items.length; e++) {
-                            var test = items[e];
-                            var firstvariable = "listeners.";
-                            var secondvariable = '.' + id_suffix;
-                            var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
-                            displayableData.push(result[1]);
-                        }
-                    } else {
-                        for (let e = 0; e < items.length; e++) {
-                            var test = items[e];
-                            var firstvariable = "listeners.";
-                            var secondvariable = '';
-                            var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
-                            displayableData.push(result[1]);
-                        }
-                    }
-                }
+            // if (localStorage.getItem('cpro') === 'oci') {
+            //     if (this.state.pathToFetchData === "identity.policies") {
+            //         this.setState({ policies: tempData.policies });
+            //         for (let e = 0; e < items.length; e++) {
+            //             var str = items[e];
+            //             var res = str.split(".");
+            //             for (var i = 0; i < res.length; i++) {
+            //                 if (res[i] === "policies")
+            //                     displayableData.push(res[i + 1]);
+            //             }
+            //         }
+            //     }
+            //     else if (this.state.pathToFetchData === "identity.users") {
+            //         this.setState({ policies: tempData.policies });
+            //         for (let e = 0; e < items.length; e++) {
+            //             var str = items[e];
+            //             var res = str.split(".");
+            //             for (var i = 0; i < res.length; i++) {
+            //                 if (res[i] === "users")
+            //                     displayableData.push(res[i + 1]);
+            //             }
+            //         }
+            //     }
+            //     else if (this.state.pathToFetchData === "objectstorage.compartments.id.buckets") {
+            //         if (id_suffix) {
+            //             for (let e = 0; e < items.length; e++) {
+            //                 var test = items[e];
+            //                 var firstvariable = "buckets.";
+            //                 var secondvariable = '.' + id_suffix;
+            //                 var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
+            //                 displayableData.push(result[1]);
+            //             }
+            //         } else {
+            //             for (let e = 0; e < items.length; e++) {
+            //                 var test = items[e];
+            //                 var firstvariable = "buckets.";
+            //                 var secondvariable = '';
+            //                 var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
+            //                 displayableData.push(result[1]);
+            //             }
+            //         }
+            //     }
+            //     else if (this.state.pathToFetchData === "blockstorage.compartments.id.blockvolumes") {
+            //         if (id_suffix) {
+            //             for (let e = 0; e < items.length; e++) {
+            //                 var test = items[e];
+            //                 var firstvariable = "blockvolumes.";
+            //                 var secondvariable = '.' + id_suffix;
+            //                 var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
+            //                 displayableData.push(result[1]);
+            //             }
+            //         } else {
+            //             for (let e = 0; e < items.length; e++) {
+            //                 var test = items[e];
+            //                 var firstvariable = "blockvolumes.";
+            //                 var secondvariable = '';
+            //                 var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
+            //                 displayableData.push(result[1]);
+            //             }
+            //         }
+            //     }
+            //     else if (this.state.pathToFetchData === "database.compartments.id.db_system.id.databases") {
+            //         if (id_suffix) {
+            //             for (let e = 0; e < items.length; e++) {
+            //                 var test = items[e];
+            //                 var firstvariable = "db_system.";
+            //                 var secondvariable = '.databases';
+            //                 var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
+            //                 displayableData.push(result[1]);
+            //             }
+            //         } else {
+            //             for (let e = 0; e < items.length; e++) {
+            //                 var test = items[e];
+            //                 var firstvariable = "databases.";
+            //                 var secondvariable = '';
+            //                 var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
+            //                 displayableData.push(result[1]);
+            //             }
+            //         }
+            //     }
+            //     else if (this.state.pathToFetchData === "database.compartments.id.db_system") {
+            //         if (id_suffix) {
+            //             for (let e = 0; e < items.length; e++) {
+            //                 var test = items[e];
+            //                 var firstvariable = "db_system.";
+            //                 var secondvariable = '.domain';
+            //                 var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
+            //                 displayableData.push(result[1]);
+            //             }
+            //         } else {
+            //             for (let e = 0; e < items.length; e++) {
+            //                 var test = items[e];
+            //                 var firstvariable = "db_system.";
+            //                 var secondvariable = '';
+            //                 var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
+            //                 displayableData.push(result[1]);
+            //             }
+            //         }
+            //     }
+            //     else if (this.state.pathToFetchData === "compute.compartments.id.instances") {
+            //         if (id_suffix) {
+            //             for (let e = 0; e < items.length; e++) {
+            //                 var test = items[e];
+            //                 var firstvariable = "instances.";
+            //                 var secondvariable = '.' + id_suffix;
+            //                 var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
+            //                 displayableData.push(result[1]);
+            //             }
+            //         } else {
+            //             for (let e = 0; e < items.length; e++) {
+            //                 var test = items[e];
+            //                 var firstvariable = "instances.";
+            //                 var secondvariable = '';
+            //                 var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
+            //                 displayableData.push(result[1]);
+            //             }
+            //         }
+            //     }
+            //     else if (this.state.pathToFetchData === "vcn.compartments.id.vcn.id.security_lists.id.ingress_security_rules") {
+            //         if (id_suffix) {
+            //             for (let e = 0; e < items.length; e++) {
+            //                 var test = items[e];
+            //                 var firstvariable = "security_lists.";
+            //                 var secondvariable = '.' + id_suffix;
+            //                 var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
+            //                 displayableData.push(result[1]);
+            //             }
+            //         } else {
+            //             for (let e = 0; e < items.length; e++) {
+            //                 var test = items[e];
+            //                 var firstvariable = "security_lists.";
+            //                 var secondvariable = '.ingress_security_rules';
+            //                 var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
+            //                 displayableData.push(result[1]);
+            //                 var result2 = test.match(new RegExp(secondvariable + '.' + "(.*)" + ""));
+            //                 displayableData2.push(result2[1]);
+            //                 var result3 = test.match(new RegExp("compartments." + "(.*)" + ".vcn"));
+            //                 displayableData3.push(result3[1]);
+            //             }
+            //         }
+            //     }
+            //     else if (this.state.pathToFetchData === "vcn.compartments.id.vcn.id.nsg.id.ingress_rules") {
+            //         if (id_suffix) {
+            //             for (let e = 0; e < items.length; e++) {
+            //                 var test = items[e];
+            //                 var firstvariable = "security_lists.";
+            //                 var secondvariable = '.' + id_suffix;
+            //                 var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
+            //                 displayableData.push(result[1]);
+            //             }
+            //         } else {
+            //             for (let e = 0; e < items.length; e++) {
+            //                 var test = items[e];
+            //                 var result = test.match(new RegExp(".vcn." + "(.*)" + ".nsg"));
+            //                 displayableData.push(result[1]);
+            //                 var result2 = test.match(new RegExp("nsg." + '.' + "(.*)" + ".ingress_rules"));
+            //                 displayableData2.push(result2[1]);
+            //                 var result3 = test.match(new RegExp("ingress_rules." + "(.*)" + ""));
+            //                 displayableData3.push(result3[1]);
+            //             }
+            //         }
+            //     }
+            //     else if (this.state.pathToFetchData === "loadbalancer.compartments.id.loadbalancer.id.listeners") {
+            //         if (id_suffix) {
+            //             for (let e = 0; e < items.length; e++) {
+            //                 var test = items[e];
+            //                 var firstvariable = "listeners.";
+            //                 var secondvariable = '.' + id_suffix;
+            //                 var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
+            //                 displayableData.push(result[1]);
+            //             }
+            //         } else {
+            //             for (let e = 0; e < items.length; e++) {
+            //                 var test = items[e];
+            //                 var firstvariable = "listeners.";
+            //                 var secondvariable = '';
+            //                 var result = test.match(new RegExp(firstvariable + "(.*)" + secondvariable));
+            //                 displayableData.push(result[1]);
+            //             }
+            //         }
+            //     }
 
-            }
-            if (localStorage.getItem('cpro') === 'azure') {
-                if (this.state.pathToFetchData === "securitycenter.subscriptions.id.pricings") {
+            // }
+            // if (localStorage.getItem('cpro') === 'azure') {
+            //     if (this.state.pathToFetchData === "securitycenter.subscriptions.id.pricings") {
 
-                    for (let e = 0; e < items.length; e++) {
-                        var test = items[e];
-                        var result = test.match(new RegExp(".subscriptions." + "(.*)" + ".pricings./"));
-                        displayableData.push(result[1]);
-                        var result2 = test.match(new RegExp(".pricings." + "(.*)" + '.' + id_suffix));
-                        displayableData2.push(result2[1]);
-                    }
+            //         for (let e = 0; e < items.length; e++) {
+            //             var test = items[e];
+            //             var result = test.match(new RegExp(".subscriptions." + "(.*)" + ".pricings./"));
+            //             displayableData.push(result[1]);
+            //             var result2 = test.match(new RegExp(".pricings." + "(.*)" + '.' + id_suffix));
+            //             displayableData2.push(result2[1]);
+            //         }
 
-                }
+            //     }
 
-            }
+            // }
 
 
         }
@@ -557,7 +558,7 @@ export default class FindingDetails extends Component {
                 <Header />
                 <div className="dashboard-container cust-boxShadow-1">
                     <Row>
-                        <Col xs="2" sm="1" md="1" className="bgWhite">
+                        {/* <Col xs="2" sm="1" md="1" className="bgWhite">
                             <Nav tabs vertical pills className="bgWhite verticalTab browserHeight1">
                                 <NavItem>
 
@@ -581,7 +582,7 @@ export default class FindingDetails extends Component {
                                                         this.toggle(i);
                                                     }}
                                                 >
-                                                    {localStorage.getItem("cpro") === 'aws' ?
+                                                    {localStorage.getItem("cpro") === this.state.dbName ?
                                                         <img className="img-fluid" src={require("../assets/img/aws/" + item.label + ".svg")} />
                                                         : null
                                                     }
@@ -597,7 +598,7 @@ export default class FindingDetails extends Component {
                                                     }
 
                                                     <div>
-                                                        {localStorage.getItem("cpro") === 'aws' ? (namesMapping.awsServiceNames.hasOwnProperty(item.label) ? namesMapping.awsServiceNames[item.label] : item.label) : null}
+                                                        {localStorage.getItem("cpro") === this.state.dbName ? (namesMapping.awsServiceNames.hasOwnProperty(item.label) ? namesMapping.awsServiceNames[item.label] : item.label) : null}
 
                                                         {localStorage.getItem("cpro") === 'oci' ? (namesMapping.ociServiceNames.hasOwnProperty(item.label) ? namesMapping.ociServiceNames[item.label] : item.label) : null}
                                                         {localStorage.getItem("cpro") === 'azure' ? (namesMapping.azureServiceNames.hasOwnProperty(item.label) ? namesMapping.azureServiceNames[item.label] : item.label) : null}
@@ -609,11 +610,11 @@ export default class FindingDetails extends Component {
                                         null
                                 }
                             </Nav>
-                        </Col>
-                        <Col xs="10" sm="11" md="11">
+                        </Col> */}
+                        <Col xs="10" sm="12" md="12">
 
-                            <div activeTab={this.state.activeTab} >
-                                {this.state.labels && localStorage.getItem('cpro') === 'oci' &&
+                            {/* <div activeTab={this.state.activeTab} > */}
+                                {/* {this.state.labels && localStorage.getItem('cpro') === 'oci' &&
                                     <div>
                                         {this.state.pathToFetchData === "identity.policies" &&
                                             <IdentityPolicies history={this.props.history} dbName={this.state.dbName} data={this.state.data} whichDataToFetch={this.props.location.state.whichDataToFetch} accId={this.props.location.state.accId} displayableData={this.state.displayableData} />
@@ -646,8 +647,8 @@ export default class FindingDetails extends Component {
                                             <LoadBalListener history={this.props.history} dbName={this.state.dbName} data={this.state.data} whichDataToFetch={this.props.location.state.whichDataToFetch} accId={this.props.location.state.accId} displayableData={this.state.displayableData} />
                                         }
                                     </div>
-                                }
-                                {this.state.labels && localStorage.getItem('cpro') === 'aws' &&
+                                } */}
+                                {this.state.data &&
                                     <div>
                                         {this.state.pathToFetchData === "ec2.regions.id.vpcs.id.security_groups" &&
                                             <EC2RegionsVpcsSecurityGroups history={this.props.history} dbName={this.state.dbName} data={this.state.data} whichDataToFetch={this.props.location.state.whichDataToFetch} accId={this.props.location.state.accId} displayableData={this.state.displayableData} />
@@ -746,7 +747,7 @@ export default class FindingDetails extends Component {
                                     </div>
                                 }
 
-                            </div>
+                            {/* </div> */}
 
                         </Col>
                     </Row>

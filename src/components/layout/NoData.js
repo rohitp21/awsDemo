@@ -5,6 +5,7 @@ import * as Constants from '../../data/Constants';
 import { withRouter } from "react-router-dom";
 import UtilClass from '../SupportingJs/Util'
 import { Button, Input } from "reactstrap";
+import BlockUi from "react-block-ui";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faSignInAlt,
@@ -46,7 +47,8 @@ class NoData extends Component {
         //     "status": 200
         // }
         // this.props.history.push('/aws_accounts', respdata);
-        await axios.get("http://34.122.239.255:32599/").then(response => {
+        this.blockUi();
+        await axios.get(Constants.URLSERVER).then(response => {
             console.log(response);
             let respdata = response.data
             this.props.history.push('/aws_accounts', respdata);
@@ -54,11 +56,23 @@ class NoData extends Component {
             let respdata = "NE"
             console.log(error);
         })
+        this.unBlockUi();
 
     };
+    blockUi = () => {
+        this.setState({
+          isLoading: true,
+        });
+      };
+      unBlockUi = () => {
+        this.setState({
+          isLoading: false,
+        });
+      };
     render() {
         return (
             <div>
+                 <BlockUi tag="div" blocking={this.state.isLoading} />
                 {
 
                     this.props.showCompliance !== undefined && this.props.showCompliance === "0" &&
@@ -76,10 +90,19 @@ class NoData extends Component {
                         <div className="dashboard-container container my-5 p-5 noDataContainer text-center h-auto">
                             <h4 className=""> We Provide cloud solutions for following platforms and many more..</h4>
                             <div className="row text-center nodataHome mt-4">
-                                <div className="col-12 text-center cloudLogoContainer">
-                                    <img className="img-fluid" alt="awsCloudLogo" src={require("../assets/img/awsCloudLogo.png")} />
+                            <div className="cloudLogoContainer col-md-3 border-right-1">
+                                <img style={{boxShadow:'0px 7px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(201 216 255)',borderRadius: '10px'}} className="img-fluid" alt="awsCloudLogo" src={require("../assets/img/awsCloudLogo.png")} />
                                 </div>
-                                <div className="col-md-12 mt-3">
+                                <div className="cloudLogoContainer col-md-3 border-right-1">
+                                <img className="img-fluid" alt="ociCloudLogo" src={require("../assets/img/ociCloudLogo.png")} />
+                                </div>
+                                <div className="cloudLogoContainer col-md-3 border-right-1">
+                                <img className="img-fluid" alt="azzureCloudLogo" src={require("../assets/img/azzureCloudLogo.png")} />
+                                </div>
+                                <div className="cloudLogoContainer col-md-3">
+                                <img className="img-fluid" alt="gcpCloudLogo" src={require("../assets/img/gcpCloudLogo.png")} />
+                                </div>
+                                <div className="col-md-12 mt-5">
                                     <Input
                                         className="optin form-control"
                                         defaultValue={this.state.aws_input_string}
@@ -87,7 +110,7 @@ class NoData extends Component {
                                             this.setState({ aws_input_string: e.target.value });
                                         }}
                                         type="text"
-                                        placeholder="Enter input"
+                                        placeholder="Enter input for AWS Accounts"
                                     />
                                 </div>
                                 <div className="col-md-12 mt-3">
