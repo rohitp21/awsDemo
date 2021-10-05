@@ -29,6 +29,7 @@ class TabluePoc1 extends Component {
         accList: this.props.location.state.data,
     }
     onAccClick = async (accId) => {
+        this.blockUi();
         await axios.get(Constants.URLSERVER + "getsummary/" + accId).then(response => {
             console.log(response);
             let respdata = response.data
@@ -40,72 +41,26 @@ class TabluePoc1 extends Component {
             let respdata = "NE"
             console.log(error);
         })
+        this.unBlockUi()
          //this.props.history.push('/acc_data', {'accId':accId});
 
     };
-    // async componentDidMount() {
-    //     this.setState({ accList: [
-    //             {
-    //                 "_id": "5f73199724d04ed2cc3c2ff1",
-    //                 "name": "AWS DEV 1",
-    //                 "alias": "tricksvibe",
-    //                 "account_id": "887220118845",
-    //                 "cloud_platform": "aws",
-    //                 "expired": true,
-    //                 "created_at": "2020-09-29 16:49:26.053000",
-    //                 "updated_at": "2020-09-29 16:49:26.053000"
-    //             },
-    //             {
-    //                 "_id": "5f731cac24d04ed2cc3c2ff3",
-    //                 "name": "AWS DEV 2",
-    //                 "alias": "kapstoneoci",
-    //                 "account_id": "ocid1.tenancy.oc1..aaaaaaaacudtc5lvvcuvpme3nutywjxxreo3g2e2mwsj4vy2djwpihyvb37q",
-    //                 "cloud_platform": "oci",
-    //                 "expired": true,
-    //                 "created_at": "2020-09-29 16:49:26.053000",
-    //                 "updated_at": "2020-09-29 16:49:26.053000"
-    //             },
-    //             {
-    //                 "_id": "5f731cdb24d04ed2cc3c2ff4",
-    //                 "name": "AWS DEV 3",
-    //                 "alias": "mishraamrish",
-    //                 "account_id": "ocid1.tenancy.oc1..aaaaaaaaln6gnfrdfpmw2z7piftu2f66dxvwpagqdqvrpqwhrht6kcr6mg6q",
-    //                 "cloud_platform": "oci",
-    //                 "expired": true,
-    //                 "created_at": "2020-09-29 16:49:26.053000",
-    //                 "updated_at": "2020-09-29 16:49:26.053000"
-    //             },
-    //             {
-    //                 "_id": "5f77727424d04ed2cc3c2ff5",
-    //                 "name": "AWS DEV 4",
-    //                 "alias": "mishraamrish",
-    //                 "account_id": "46974511-52b7-442e-bbaa-f9b4f963e645",
-    //                 "cloud_platform": "azure",
-    //                 "expired": true,
-    //                 "created_at": "2020-09-29 16:49:26.053000",
-    //                 "updated_at": "2020-09-29 16:49:26.053000"
-    //             },
-    //             {
-    //                 "_id": "5ff7183091687be571178275",
-    //                 "name": "AWS DEV 5",
-    //                 "alias": "kapstonellc",
-    //                 "account_id": "904821997617",
-    //                 "cloud_platform": "aws",
-    //                 "expired": false,
-    //                 "created_at": "2021-01-07 14:18:24.608000",
-    //                 "updated_at": "2021-01-07 14:18:24.608000"
-    //             }
-    //         ]
-    //      })
-
-
-
-    // }
+    blockUi = () => {
+        this.setState({
+          isLoading: true,
+        });
+      };
+      unBlockUi = () => {
+        this.setState({
+          isLoading: false,
+        });
+      };
 
     render() {
         return (
             <div>
                 <Header />
+                <BlockUi tag="div" blocking={this.state.isLoading} />
                 <div className="col-md-12">
                         <Breadcrumb tag="nav" listTag="div">
                             <BreadcrumbItem

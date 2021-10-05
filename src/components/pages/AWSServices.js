@@ -176,7 +176,7 @@ class AWSServices extends Component {
     });
   };
   goToServiceDashboard = (serviceName) => {
-    localStorage.setItem("cpro", this.state.providerType);
+    //localStorage.setItem("cpro", this.state.providerType);
     //localStorage.setItem("whichTab", i);
     // this.props.history.push(`/ds/${this.state.accId}`, {
     //   labels2: this.state.labels2,
@@ -188,6 +188,7 @@ class AWSServices extends Component {
     //   accId: this.state.accId,
     //   serviceName:serviceName
     // });
+    
     this.props.history.push(`/aws-services-details/${this.state.accId}`, {
       accId: this.state.accId,
       serviceName: serviceName

@@ -45,6 +45,7 @@ export default class AWSServiceDetails extends Component {
         });
       };
     async componentDidMount() {
+        this.blockUi();
         await axios.get(Constants.URLSERVER + "getresources/" + this.state.serviceName + "-" + this.state.accId).then(response => {
             console.log(response);
 
@@ -53,7 +54,7 @@ export default class AWSServiceDetails extends Component {
             this.unBlockUi();
             if (respdata && respdata != "NE") {
                 //window.scrollTo(0, 0);
-                this.setState({ ServiceData: respdata })
+                //this.setState({ ServiceData: respdata })
 
             } else if (respdata && respdata === "NE") {
                 this.showToast(Constants.TOAST_NET_ERR, "error");
@@ -68,7 +69,7 @@ export default class AWSServiceDetails extends Component {
     }
     render() {
         return (
-            <>
+            <><BlockUi tag="div" blocking={this.state.isLoading} />
                 <Header />
                 <div className="col-md-12">
                 <Breadcrumb tag="nav" listTag="div">
