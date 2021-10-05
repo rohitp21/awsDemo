@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TabContent, TabPane, Nav, NavItem, Table,NavLink, Row, Col } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, Table, NavLink, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 import Header from '../layout/Header'
 import ServiceFinding from '../layout/ServiceFinding';
@@ -36,14 +36,14 @@ export default class AWSServiceDetails extends Component {
     }
     blockUi = () => {
         this.setState({
-          isLoading: true,
+            isLoading: true,
         });
-      };
-      unBlockUi = () => {
+    };
+    unBlockUi = () => {
         this.setState({
-          isLoading: false,
+            isLoading: false,
         });
-      };
+    };
     async componentDidMount() {
         this.blockUi();
         await axios.get(Constants.URLSERVER + "getresources/" + this.state.serviceName + "-" + this.state.accId).then(response => {
@@ -72,32 +72,32 @@ export default class AWSServiceDetails extends Component {
             <><BlockUi tag="div" blocking={this.state.isLoading} />
                 <Header />
                 <div className="col-md-12">
-                <Breadcrumb tag="nav" listTag="div">
-                  <BreadcrumbItem
-                    className="link"
-                    onClick={() => this.props.history.push("/")}
-                    tag="a"
-                  >
-                    Go to Discover
-                  </BreadcrumbItem>
-                  <BreadcrumbItem className="text-capitalize link" tag="a" onClick={() => this.props.history.goBack()}>
-                    Services
-                  </BreadcrumbItem>
-                  <BreadcrumbItem active tag="span">
-                    Account ID: {this.state.accId}
-                  </BreadcrumbItem>
-                </Breadcrumb>
-                    </div>
-                    <Divider />
+                    <Breadcrumb tag="nav" listTag="div">
+                        <BreadcrumbItem
+                            className="link"
+                            onClick={() => this.props.history.push("/")}
+                            tag="a"
+                        >
+                            Go to Discover
+                        </BreadcrumbItem>
+                        <BreadcrumbItem className="text-capitalize link" tag="a" onClick={() => this.props.history.goBack()}>
+                            Services
+                        </BreadcrumbItem>
+                        <BreadcrumbItem active tag="span">
+                            Account ID: {this.state.accId}
+                        </BreadcrumbItem>
+                    </Breadcrumb>
+                </div>
+                <Divider />
                 <div className="dashboard-container container">
                     <Row className="w-100">
-
-                        <Col xs="12" sm="12" md="12">
+                        <h5 className="mx-auto">Region Wise Volume Details</h5>
+                        <Col xs="12" sm="12" md="12" className="mt-3">
 
                             {
                                 this.state.ServiceData && Object.entries(this.state.ServiceData).map((item, i) => (
                                     Object.entries(item[1]).map((serv, j) =>
-                                    serv[1] && serv[1].length >0 &&
+                                        serv[1] && serv[1].length > 0 &&
                                         <Accordion>
                                             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                                                 <span>{serv[0]}  </span><span className="float-right">Total Volumes :{serv[1].length}</span>
@@ -111,7 +111,7 @@ export default class AWSServiceDetails extends Component {
                                                         <Table hover className="text-center">
                                                             <thead>
                                                                 <tr>
-                                                                    
+
                                                                     <th className="text-center">
                                                                         Volume Name
                                                                     </th>
@@ -126,7 +126,7 @@ export default class AWSServiceDetails extends Component {
                                                                         <tr>
                                                                             <td>{serv2[1]['Name']}</td>
                                                                             <td>
-                                                                                 {serv2[1]['encrypted'] == false ? <span className="colorDanger">No</span> : <span className="colorSuccess">Yes</span>}
+                                                                                {serv2[1]['encrypted'] == false ? <span className="colorDanger">No</span> : <span className="colorSuccess">Yes</span>}
                                                                             </td>
                                                                         </tr>
                                                                     )
