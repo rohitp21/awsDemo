@@ -9,7 +9,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 export default class IamPasswordPolicy extends Component {
     _dataContextUtil = new UtilClass();
     constructor(props) {
-        debugger
         super(props);
         console.log(this.props)
         this.state = {

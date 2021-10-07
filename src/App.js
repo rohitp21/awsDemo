@@ -6,6 +6,7 @@ import FindingDetails from './components/pages/FindingDetails';
 import { BrowserRouter as Router, Route, Switch  } from 'react-router-dom';
 import OCISummaryDetails from './components/layout/oci/OCIReports/OCISummaryDetails';
 import Login from './components/auth/Login'
+import Test from './components/auth/Test'
 import ScrollTop from './components/Plugins/ScrollTop'
 import ComplianceDashboard from './components/pages/ComplianceDashboard';
 import CloudDashboard from './components/pages/CloudDashboard';
@@ -56,6 +57,7 @@ function App() {
         } */}
         <Switch>
           <Route exact path="/login" component={Login} />
+          <Route exact path="/test" component={Test} />
           <Route exact path="/">
             {isAuthenticated ? <Dashboard /> : <Login />}
           </Route>

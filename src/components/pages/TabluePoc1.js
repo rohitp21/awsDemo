@@ -29,32 +29,34 @@ class TabluePoc1 extends Component {
         accList: this.props.location.state.data,
     }
     onAccClick = async (accId) => {
-        this.blockUi();
-        await axios.get(Constants.URLSERVER + "getsummary/" + accId).then(response => {
-            console.log(response);
-            let respdata = response.data
-            //this.props.history.push('/acc_data', respdata);
-            respdata.data.accId = accId;
-            //this.props.history.push('/cloudDashboard', respdata);
-            this.props.history.push('/awsservices', respdata);
-        }).catch(error => {
-            let respdata = "NE"
-            console.log(error);
-        })
-        this.unBlockUi()
-         //this.props.history.push('/acc_data', {'accId':accId});
+        // this.blockUi();
+        // await axios.get(Constants.URLSERVER + "getsummary/" + accId).then(response => {
+        //     console.log(response);
+        //     let respdata = response.data
+        //     //this.props.history.push('/acc_data', respdata);
+        //     respdata.data.accId = accId;
+        //     //this.props.history.push('/cloudDashboard', respdata);
+        //     this.props.history.push('/awsservices', respdata);
+        // }).catch(error => {
+        //     let respdata = "NE"
+        //     console.log(error);
+        // })
+        // this.unBlockUi()
+        this.props.history.push('/awsservices', {
+            accId: accId
+        });
 
     };
     blockUi = () => {
         this.setState({
-          isLoading: true,
+            isLoading: true,
         });
-      };
-      unBlockUi = () => {
+    };
+    unBlockUi = () => {
         this.setState({
-          isLoading: false,
+            isLoading: false,
         });
-      };
+    };
 
     render() {
         return (
@@ -62,19 +64,19 @@ class TabluePoc1 extends Component {
                 <Header />
                 <BlockUi tag="div" blocking={this.state.isLoading} />
                 <div className="col-md-12">
-                        <Breadcrumb tag="nav" listTag="div">
-                            <BreadcrumbItem
-                                className="link"
-                                onClick={() => this.props.history.push("/")}
-                                tag="a"
-                            >
-                                Go to Discover
-                            </BreadcrumbItem>
-                        </Breadcrumb>
-                    </div>
-                    <Divider />
+                    <Breadcrumb tag="nav" listTag="div">
+                        <BreadcrumbItem
+                            className="link"
+                            onClick={() => this.props.history.push("/")}
+                            tag="a"
+                        >
+                            Go to Discover
+                        </BreadcrumbItem>
+                    </Breadcrumb>
+                </div>
+                <Divider />
                 <div className="dashboard-container noDataContainer  custWidth1 h-100">
-                   
+
                     <span className="collapsible_Container">
                         <FontAwesomeIcon className="float-right" onClick={this.toggleCD} icon={faChevronDown} />
                     </span>

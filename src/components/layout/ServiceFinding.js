@@ -104,7 +104,6 @@ class ServiceFinding extends Component {
      
       this.unBlockUi();
       if (respdata && respdata != "NE") {
-        debugger
         window.scrollTo(0, 0);
         for (var { } in respdata) {
           let findingsObj = respdata.findings;

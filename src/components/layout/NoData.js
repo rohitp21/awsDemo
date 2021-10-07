@@ -48,7 +48,7 @@ class NoData extends Component {
         // }
         // this.props.history.push('/aws_accounts', respdata);
         this.blockUi();
-        await axios.get(Constants.URLSERVER).then(response => {
+        await axios.get(Constants.URLSERVER+'discover').then(response => {
             console.log(response);
             let respdata = response.data
             this.props.history.push('/aws_accounts', respdata);

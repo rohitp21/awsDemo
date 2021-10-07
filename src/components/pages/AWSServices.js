@@ -66,6 +66,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { BreadcrumbItem, Breadcrumb } from "reactstrap";
 import Divider from '@material-ui/core/Divider';
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 const optionsDateWiseFilter = [
   'none',
   'Day-Wise',
@@ -100,8 +102,8 @@ class AWSServices extends Component {
     anchorEl: null,
     anchorEl2: null,
     selectedCat: "All",
-    ServiceData: this.props.location.state.data,
-    accId: this.props.location.state.data.accId
+    //ServiceData: this.props.location.state.data,
+    accId: this.props.location.state.accId
   };
 
 
@@ -163,7 +165,20 @@ class AWSServices extends Component {
 
 
   async componentDidMount() {
-    //alert(this.state.accId)
+    this.blockUi();
+        await axios.get(Constants.URLSERVER + "getsummary/" + this.state.accId).then(response => {
+            console.log(response);
+            let respdata = response.data.data
+            this.setState({ServiceData:respdata})
+            //this.props.history.push('/acc_data', respdata);
+            respdata.data.accId = this.state.accId;
+            //this.props.history.push('/cloudDashboard', respdata);
+            //this.props.history.push('/awsservices', respdata);
+        }).catch(error => {
+            let respdata = "NE"
+            console.log(error);
+        })
+        this.unBlockUi()
   }
   blockUi = () => {
     this.setState({

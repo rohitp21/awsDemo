@@ -91,7 +91,12 @@ export default class AWSServiceDetails extends Component {
                 <Divider />
                 <div className="dashboard-container container">
                     <Row className="w-100">
-                        <h5 className="mx-auto">Region Wise Volume Details</h5>
+                        <h5 className="mx-auto">Region Wise {
+                            this.state.serviceName == 's3' ?
+                                <span > Buckets</span>
+                                :
+                                <span > Volumes</span>
+                        }</h5>
                         <Col xs="12" sm="12" md="12" className="mt-3">
 
                             {
@@ -100,7 +105,13 @@ export default class AWSServiceDetails extends Component {
                                         serv[1] && serv[1].length > 0 &&
                                         <Accordion>
                                             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                                                <span>{serv[0]}  </span><span className="float-right">Total Volumes :{serv[1].length}</span>
+                                                <span>{serv[0]}  </span>
+                                                {
+                                                    this.state.serviceName == 's3' ?
+                                                        <span className="float-right"> Total Buckets :{serv[1].length} </span>
+                                                        :
+                                                        <span className="float-right"> Total Volumes :{serv[1].length} </span>
+                                                }
                                             </AccordionSummary>
                                             <AccordionDetails>
                                                 <div className="px-2 py-1">

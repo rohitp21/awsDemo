@@ -5,7 +5,10 @@
  
 //after exp doman http://cloudanalytics.kapstonellc.co/ :::::::4 august 2021
 //export const URLSERVER = "https://cloudanalytics.kapstonellc.com/api/"
-export const URLSERVER = "http://34.122.239.255:32599/"
+//export const URLSERVER = "http://34.122.239.255:32599/"
+export const URLSERVER = "http://flask-svc:5000/"
+
+
 //export const URLSERVER = "https://dev.kapstonellc.co/api/"
 //export const URLSERVER = "http://cloudanalytics.kapstonellc.co:8000/"
 
