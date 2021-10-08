@@ -46,8 +46,10 @@ export default class AWSServiceDetails extends Component {
     };
     async componentDidMount() {
         this.blockUi();
-        await axios.get(Constants.URLSERVER + "getresources/" + this.state.serviceName + "-" + this.state.accId).then(response => {
-            console.log(response);
+        //let url = localStorage.getItem('apiURL');
+        await axios.get(window.location.origin + "/api/"+ "getresources/" + this.state.serviceName + "-" + this.state.accId).then(response => {//await axios.get(Constants.URLSERVER + "getresources/" + this.state.serviceName + "-" + this.state.accId).then(response => {
+            
+        console.log(response);
 
             let respdata = response.data.data
             this.setState({ ServiceData: respdata })

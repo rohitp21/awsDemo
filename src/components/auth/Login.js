@@ -110,7 +110,10 @@ export default class Login extends Component {
       //this.showToast(Constants.TOAST_SOMETHING_WENT_WRONG, "error");
     //}
   };
-  
+  componentDidMount(){
+    //let apiURL= window.location.href;
+    //localStorage.setItem('apiURL',apiURL);
+  }
   render() {
     return (
       <div>

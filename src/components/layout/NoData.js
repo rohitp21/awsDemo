@@ -48,7 +48,9 @@ class NoData extends Component {
         // }
         // this.props.history.push('/aws_accounts', respdata);
         this.blockUi();
-        await axios.get(Constants.URLSERVER+'discover').then(response => {
+        let url = localStorage.getItem('apiURL')
+        //await axios.get(Constants.URLSERVER+'discover').then(response => {
+        await axios.get(window.location.origin + '/api/' + 'discover').then(response => {
             console.log(response);
             let respdata = response.data
             this.props.history.push('/aws_accounts', respdata);
@@ -61,18 +63,18 @@ class NoData extends Component {
     };
     blockUi = () => {
         this.setState({
-          isLoading: true,
+            isLoading: true,
         });
-      };
-      unBlockUi = () => {
+    };
+    unBlockUi = () => {
         this.setState({
-          isLoading: false,
+            isLoading: false,
         });
-      };
+    };
     render() {
         return (
             <div>
-                 <BlockUi tag="div" blocking={this.state.isLoading} />
+                <BlockUi tag="div" blocking={this.state.isLoading} />
                 {
 
                     this.props.showCompliance !== undefined && this.props.showCompliance === "0" &&
@@ -90,17 +92,17 @@ class NoData extends Component {
                         <div className="dashboard-container container my-5 p-5 noDataContainer text-center h-auto">
                             <h4 className=""> We Provide cloud solutions for following platforms and many more..</h4>
                             <div className="row text-center nodataHome mt-4">
-                            <div className="cloudLogoContainer col-md-3 border-right-1">
-                                <img style={{boxShadow:'0px 7px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(201 216 255)',borderRadius: '10px'}} className="img-fluid" alt="awsCloudLogo" src={require("../assets/img/awsCloudLogo.png")} />
+                                <div className="cloudLogoContainer col-md-3 border-right-1">
+                                    <img style={{ boxShadow: '0px 7px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(201 216 255)', borderRadius: '10px' }} className="img-fluid" alt="awsCloudLogo" src={require("../assets/img/awsCloudLogo.png")} />
                                 </div>
                                 <div className="cloudLogoContainer col-md-3 border-right-1">
-                                <img className="img-fluid" alt="ociCloudLogo" src={require("../assets/img/ociCloudLogo.png")} />
+                                    <img className="img-fluid" alt="ociCloudLogo" src={require("../assets/img/ociCloudLogo.png")} />
                                 </div>
                                 <div className="cloudLogoContainer col-md-3 border-right-1">
-                                <img className="img-fluid" alt="azzureCloudLogo" src={require("../assets/img/azzureCloudLogo.png")} />
+                                    <img className="img-fluid" alt="azzureCloudLogo" src={require("../assets/img/azzureCloudLogo.png")} />
                                 </div>
                                 <div className="cloudLogoContainer col-md-3">
-                                <img className="img-fluid" alt="gcpCloudLogo" src={require("../assets/img/gcpCloudLogo.png")} />
+                                    <img className="img-fluid" alt="gcpCloudLogo" src={require("../assets/img/gcpCloudLogo.png")} />
                                 </div>
                                 <div className="col-md-12 mt-5">
                                     <Input

@@ -3,7 +3,7 @@ import './App.css';
 import Dashboard from './components/pages/Dashboard';
 import DashboardService from './components/pages/DashboardService';
 import FindingDetails from './components/pages/FindingDetails';
-import { BrowserRouter as Router, Route, Switch  } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import OCISummaryDetails from './components/layout/oci/OCIReports/OCISummaryDetails';
 import Login from './components/auth/Login'
 import Test from './components/auth/Test'
@@ -21,7 +21,8 @@ function App() {
   //setupAxiosInterceptors()
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
-
+    //let apiURL = window.location.href;
+    //localStorage.setItem('apiURL', apiURL);
     if (localStorage.getItem('isAuthenticated') && localStorage.getItem('isAuthenticated') === 'true') {
       setIsAuthenticated(true)
       //access token expired or not

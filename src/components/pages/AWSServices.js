@@ -166,7 +166,9 @@ class AWSServices extends Component {
 
   async componentDidMount() {
     this.blockUi();
-        await axios.get(Constants.URLSERVER + "getsummary/" + this.state.accId).then(response => {
+    //let url = localStorage.getItem('apiURL');
+        //await axios.get(Constants.URLSERVER + "getsummary/" + this.state.accId).then(response => {
+          await axios.get(window.location.origin + "/api/" + "getsummary/" + this.state.accId).then(response => {
             console.log(response);
             let respdata = response.data.data
             this.setState({ServiceData:respdata})

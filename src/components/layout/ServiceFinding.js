@@ -97,11 +97,11 @@ class ServiceFinding extends Component {
     //   this.showToast(Constants.TOAST_SOMETHING_WENT_WRONG, "error");
     // }
 
-    await axios.get(Constants.URLSERVER+"getresources/" + this.props.serviceName + "-" + this.props.accId).then(response => {
+    await axios.get(window.location.origin + "/api/" + "/getresources/" + this.props.serviceName + "-" + this.props.accId).then(response => {
       console.log(response);
-      
+
       let respdata = response.data.data
-     
+
       this.unBlockUi();
       if (respdata && respdata != "NE") {
         window.scrollTo(0, 0);
@@ -186,7 +186,7 @@ class ServiceFinding extends Component {
   goToFindingDetails = (items, path, dbName, id_suffix) => {
     //disable click
     if (this.state.serviceName === 's3') {
-return
+      return
     }
 
     if (items.length === 0) {
@@ -307,7 +307,7 @@ return
                 >
                   Dashboard
                 </BreadcrumbItem>
-                 <BreadcrumbItem className="text-capitalize link" tag="a" onClick={() => this.props.history.goBack()}>
+                <BreadcrumbItem className="text-capitalize link" tag="a" onClick={() => this.props.history.goBack()}>
                   {this.state.serviceName} Dashboard
                 </BreadcrumbItem>
                 <BreadcrumbItem active tag="span">
@@ -504,7 +504,7 @@ return
                             item.level === "danger"
                             ? "findingDanger"
                             : null,
-                            this.state.serviceName === 's3'
+                          this.state.serviceName === 's3'
                             ? "disabledTextColor"
                             : null
                         ]}
